@@ -1,6 +1,7 @@
 from bookshelf.models import Book
 
-del_book = Book.objects.filter(publication_year=1949).delete()
+book = Book.objects.get(publication_year=1949)
+book.delete()
 
 # del_book = Book.delete() 
 
