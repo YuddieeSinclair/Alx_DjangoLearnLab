@@ -5,7 +5,7 @@ from relationship_app.models import *
 
 
 #list all books in a library
-my_library = Library.objects.get("library name")
+my_library = Library.objects.get("library_name")
 book_name = my_library.books.all()
 
 for book in book_name:
