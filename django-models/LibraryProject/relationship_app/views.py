@@ -10,5 +10,5 @@ def all_books(request):
 
 class book_detail(DetailView):
     model_name = Book
-    template_name = "library_detail.html"
+    template_name = "relationship_app/library_detail.html"
     custom_name = "book"
