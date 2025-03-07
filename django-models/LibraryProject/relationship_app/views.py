@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from .models import *
 
 def all_books(request):
-    return render(request, "list_books.html")
+    book = Book.objects.all()
+    return render(request, "list_books.html", {"template": book})
 
 
 class book_detail(DetailView):
