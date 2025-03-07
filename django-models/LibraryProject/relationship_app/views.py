@@ -5,7 +5,7 @@ from .models import *
 
 def all_books(request):
     book = Book.objects.all()
-    return render(request, "list_books.html", {"template": book})
+    return render(request, "relationship_app/list_books.html", {"template": book})
 
 
 class book_detail(DetailView):
