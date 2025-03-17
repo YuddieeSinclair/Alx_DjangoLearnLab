@@ -35,7 +35,7 @@ def register(request):
     })
 
 class LoginView(CreateView):
-    template_name= "relationship_app/registration/login.html"
+    template_name= "relationship_app/login/login.html"
 
 class LogoutView(CreateView):
-    template_name= "relationship_app/registration/logout.html"
+    template_name= "relationship_app/login/logout.html"
