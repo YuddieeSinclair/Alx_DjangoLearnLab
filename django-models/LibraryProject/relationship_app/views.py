@@ -15,12 +15,11 @@ class LibraryDetailView(DetailView):
     custom_name = "book"
 
 
-
+from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.views import LogoutView, LoginView
 
 
 def register(request):
@@ -34,8 +33,8 @@ def register(request):
         "form": form
     })
 
-class LoginView(CreateView):
+class LoginView(LoginView):
     template_name= "relationship_app/login/login.html"
 
-class LogoutView(CreateView):
+class LogoutView(LogoutView):
     template_name= "relationship_app/logout/logout.html"
