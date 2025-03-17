@@ -38,4 +38,4 @@ class LoginView(CreateView):
     template_name= "relationship_app/login/login.html"
 
 class LogoutView(CreateView):
-    template_name= "relationship_app/login/logout.html"
+    template_name= "relationship_app/logout/logout.html"
