@@ -23,7 +23,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 
 
-class RegistrationView(CreateView):
-    form_class = UserCreationForm
-    template_name = 'relationship_app/registration/register.html'
-    success_url = reverse_lazy('login')
+def register(request):
+    form = UserCreationForm
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return render(request, "relationship_app/registration/register.html", {
+        "form": form
+    })
+
+class LoginView(CreateView):
+    template_name= "relationship_app/registration/login.html"
+
+class LogoutView(CreateView):
+    template_name= "relationship_app/registration/logout.html"
