@@ -25,16 +25,6 @@ from django.contrib.auth.views import LogoutView, LoginView
 def register(request):
     form = UserCreationForm()
 
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
     return render(request, "relationship_app/registration/register.html", {
-        "form": form
+        "form":form
     })
-
-class UserLoginView(LoginView):
-    template_name= "relationship_app/login/login.html"
-
-class UserLogoutView(LogoutView):
-    template_name= "relationship_app/logout/logout.html"
