@@ -26,6 +26,6 @@ from django.contrib.auth import login
 def register(request):
     form = UserCreationForm()
 
-    return render(request, "relationship_app/registration/register.html", {
+    return render(request, "relationship_app/register.html", {
         "form":form
     })
