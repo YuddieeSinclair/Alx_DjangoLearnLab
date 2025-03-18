@@ -23,7 +23,7 @@ from django.contrib.auth.views import LogoutView, LoginView
 
 
 def register(request):
-    form = UserCreationForm
+    form = UserCreationForm()
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -33,8 +33,8 @@ def register(request):
         "form": form
     })
 
-class LoginView(LoginView):
+class UserLoginView(LoginView):
     template_name= "relationship_app/login/login.html"
 
-class LogoutView(LogoutView):
+class UserLogoutView(LogoutView):
     template_name= "relationship_app/logout/logout.html"
