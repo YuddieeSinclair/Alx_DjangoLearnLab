@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import user_passes_test
-from .models import user
+from .models import UserProfile
 from django.shortcuts import HttpResponse
 
 
 def Admin_View(user):
-    return user.role.filter(name= 'Admin')
+    access = False
+    if user.UserProfile.role(name= 'Admin'):
+        access = True
+    return access
 
 
 
