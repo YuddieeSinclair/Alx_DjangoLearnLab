@@ -13,5 +13,5 @@ def Admin_View(user):
 
 @user_passes_test(Admin_View)
 
-def admin_dashboard(request):
+def admin_view(request):
     return HttpResponse("Hello Admin")

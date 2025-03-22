@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from .views import list_books, register, LibraryDetailView
 from django.contrib.auth.views import LogoutView, LoginView
-from .admin_view import Admin_View
+from .admin_view import admin_view
 
 
 urlpatterns = [
@@ -11,5 +11,5 @@ urlpatterns = [
     path("register/", views.register, name= "register"),
     path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name= 'relationship_app/logout.html'), name= 'logout'),
-    path('adminview/', Admin_View, name= "admin_view"),
+    path('adminview/', admin_view, name= "admin_view"),
 ]
