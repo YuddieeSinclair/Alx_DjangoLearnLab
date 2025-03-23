@@ -31,15 +31,3 @@ def register(request):
     return render(request, "relationship_app/register.html", {
         "form":form
     })
-
-@user_passes_test(is_admin)
-def admin_view(request):
-    return HttpResponse("Hello Admin")
-
-@user_passes_test(is_librarian)
-def admin_view(request):
-    return HttpResponse("Hello Librarian")
-
-@user_passes_test(is_member)
-def admin_view(request):
-    return HttpResponse("Hello")

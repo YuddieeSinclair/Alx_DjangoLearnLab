@@ -6,5 +6,5 @@ from .decorators import *
 
 @user_passes_test(is_librarian)
 
-def admin_view(request):
+def Librarian(request):
     return HttpResponse("Hello librarian")

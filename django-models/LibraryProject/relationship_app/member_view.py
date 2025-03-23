@@ -6,5 +6,5 @@ from .decorators import *
 
 @user_passes_test(is_member)
 
-def admin_view(request):
+def Member(request):
     return HttpResponse("Hello")
