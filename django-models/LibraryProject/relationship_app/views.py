@@ -31,3 +31,10 @@ def register(request):
     return render(request, "relationship_app/register.html", {
         "form":form
     })
+
+
+
+@user_passes_test(is_admin)
+
+def Admin(request):
+    return HttpResponse("Hello Admin")
