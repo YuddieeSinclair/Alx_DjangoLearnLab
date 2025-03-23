@@ -21,6 +21,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth import login
+from .decorators import *
+
 
 
 def register(request):
@@ -30,4 +32,14 @@ def register(request):
         "form":form
     })
 
+@user_passes_test(is_admin)
+def admin_view(request):
+    return HttpResponse("Hello Admin")
 
+@user_passes_test(is_librarian)
+def admin_view(request):
+    return HttpResponse("Hello Librarian")
+
+@user_passes_test(is_member)
+def admin_view(request):
+    return HttpResponse("Hello")
