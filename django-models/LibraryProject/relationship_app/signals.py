@@ -8,3 +8,9 @@ from .models import UserProfile
 def create_user_profile(sender, instance, created, **kwargs):
     if created:  # Only create profile when a new user is registered
         UserProfile.objects.create(user=instance, role="Member")
+
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, created, **kwargs):
+    instance.profile.save()
