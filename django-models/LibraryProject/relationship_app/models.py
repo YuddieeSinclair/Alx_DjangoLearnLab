@@ -44,3 +44,24 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
+    
+
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from .models import UserProfile
+
+    
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:  # Only create profile when a new user is registered
+        UserProfile.objects.create(user=instance, role="Member")
+
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, created, **kwargs):
+    instance.profile.save()
