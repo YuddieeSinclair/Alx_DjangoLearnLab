@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.views.generic.detail import DetailView
 from django.http import HttpResponse
-from .models import Library, Book
+from .models import Library, UserProfile, Book
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import user_passes_test
 
 
 def list_books(request):
@@ -15,17 +17,6 @@ class LibraryDetailView(DetailView):
     custom_name = "book"
 
 
-from django.contrib.auth.models import User
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LogoutView, LoginView
-from django.contrib.auth import login
-from .admin_view import is_admin
-from .librarian_view import is_librarian
-from .member_view import is_member
-from django.contrib.auth.decorators import user_passes_test, login_required
-
 
 def register(request):
     form = UserCreationForm()
@@ -33,3 +24,15 @@ def register(request):
     return render(request, "relationship_app/register.html", {
         "form":form
     })
+
+
+
+def is_admin(user):
+    try:
+        return user.userprofile.role =='Admin'
+    except UserProfile.DoesNotExist:
+        return False
+
+@user_passes_test(is_admin)
+def admin_view(request):
+    return HttpResponse("welcome admin")

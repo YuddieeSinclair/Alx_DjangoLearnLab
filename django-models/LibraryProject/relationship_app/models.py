@@ -33,13 +33,13 @@ class Librarian(models.Model):
 from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
-    roles = [
+    user_roles = [
         ('Admin', 'Admin'),
         ('Librarian', 'Librarian'),
         ('Member', 'Member')
     ]
     user = models.OneToOneField(User, on_delete= models.CASCADE)
-    role = models.CharField(max_length=10, choices=roles, default="Member")
+    role = models.CharField(max_length=10, choices=user_roles, default="Member")
 
 
     def __str__(self):
@@ -58,7 +58,7 @@ from .models import UserProfile
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:  # Only create profile when a new user is registered
-        UserProfile.objects.create(user=instance, role="Member")
+        UserProfile.objects.create(user=instance)
 
 
 
