@@ -4,7 +4,5 @@ from django.shortcuts import HttpResponse
 from .decorators import *
 
 
-@user_passes_test(is_librarian)
-
-def Librarian(request):
-    return HttpResponse("Hello librarian")
+def is_librarian(user):
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'

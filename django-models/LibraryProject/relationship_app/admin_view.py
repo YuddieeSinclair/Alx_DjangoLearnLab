@@ -1,10 +1,6 @@
-from django.contrib.auth.decorators import user_passes_test
 from .models import UserProfile
 from django.shortcuts import HttpResponse
-from .decorators import *
 
 
-@user_passes_test(is_admin)
-
-def Admin(request):
-    return HttpResponse("Hello Admin")
+def is_admin(user):
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
