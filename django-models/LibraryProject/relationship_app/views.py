@@ -27,6 +27,7 @@ def register(request):
 
 
 
+#Admin view
 def is_admin(user):
     return user.userprofile.role == 'Admin'
 
@@ -35,7 +36,7 @@ def is_admin(user):
 def admin_view(request):
     return render(request, "relationship_app/admin_view.html")
 
-
+#Libriarian view
 def is_librarian(user):
     return user.userprofile.role == 'Librarian'
 
@@ -45,7 +46,7 @@ def librarian_view(request):
     return render(request, "relationship_app/librarian_view.html")
 
 
-
+#Member view
 def is_member(user):
     return user.userprofile.role == 'Member'
 
