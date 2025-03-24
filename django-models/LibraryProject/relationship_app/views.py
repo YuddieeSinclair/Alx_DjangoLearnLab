@@ -28,11 +28,8 @@ def register(request):
 
 
 def is_admin(user):
-    try:
-        return user.userprofile.role =='Admin'
-    except UserProfile.DoesNotExist:
-        return False
+    return user.userprofile.role == 'Admin'
 
 @user_passes_test(is_admin)
 def admin_view(request):
-    return HttpResponse("welcome admin")
+    return render(request, "relationship_app/admin_view.html")
