@@ -63,7 +63,7 @@ from django.contrib.auth.decorators import permission_required
 def add_book(request):
     return render(request, "relationship_app/list_book.html")
 
-@permission_required('relationship_app.can_edit_book', raise_exception=True)
+@permission_required('relationship_app.can_change_book', raise_exception=True)
 def edit_book(request):
     return render(request, "relationship_app/list_book.html")
 
