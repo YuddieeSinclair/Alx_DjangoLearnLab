@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Book List</h1>
+  
+  <!-- Check if user has permission to add books -->
+  {% if perms.relationship_app.can_add_book %}
+    <a href="{% url 'add_book' %}" class="btn btn-primary">Add Book</a>
+  {% endif %}
+  
+  <ul>
+    {% for book in books %}
+      <li>
+        {{ book.title }} by {{ book.author }}
+        
+        <!-- Check if user has permission to edit books -->
+        {% if perms.relationship_app.can_change_book %}
+          <a href="{% url 'edit_book' book.id %}" class="btn btn-warning">Edit</a>
+        {% endif %}
+        
+        <!-- Check if user has permission to delete books -->
+        {% if perms.relationship_app.can_delete_book %}
+          <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
