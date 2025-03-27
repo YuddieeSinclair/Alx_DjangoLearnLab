@@ -1,0 +1,1 @@
+default_app_config = 'relatkionship_app.apps.YourAppConfig'
