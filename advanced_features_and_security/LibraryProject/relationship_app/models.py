@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Author(models.Model):
@@ -37,6 +38,7 @@ class Librarian(models.Model):
 
 
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class UserProfile(models.Model):
     user_roles = [
@@ -44,7 +46,7 @@ class UserProfile(models.Model):
         ('Librarian', 'Librarian'),
         ('Member', 'Member')
     ]
-    user = models.OneToOneField(User, on_delete= models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
     role = models.CharField(max_length=10, choices=user_roles, default="Member")
 
 
@@ -71,3 +73,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, created, **kwargs):
     instance.profile.save()
+    
